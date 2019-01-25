@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 //Set initial values
-let elementAttribute, changeFromDate, resultLength, changeToDate;
+let elementAttribute, changeFromDate, resultLength;
 let resultShortName = "";
 let currencyChange = "";
 let initialValue = "";
@@ -32,6 +32,8 @@ var options = {
 };
 currentDate = currentDate.toLocaleDateString('fr-CA', options).split("/");
 currentDate = currentDate[2] + "-" + currentDate[0] + "-" + currentDate[1];
+
+let changeToDate = currentDate;
 
 var args = {
   tp: 'EU',
@@ -51,6 +53,7 @@ app.get("/", function(req, res) {
           resultShortName: resultShortName,
           currencyChange: currencyChange,
           resultLength: resultLength,
+          changeToDate: changeToDate,
           changeFromDate: changeFromDate,
           initialValue: currencies[0]
         });
