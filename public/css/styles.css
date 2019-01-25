@@ -1,0 +1,33 @@
+html,
+body {
+  height: 100%;
+  text-align: center;
+}
+
+.boldTxt {
+  font-weight: bold;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+label {
+  float: left;
+}
+
+.tableWidth {
+  margin: 20px auto;
+  width: 50%;
+}
+
+.form-app {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>LB Currencies</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  <script type="text/javascript" src="js/datepicker.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <form action="/" class="form-app" method="post">
+    <div class="form-group">
+      <label for="inputState">Currency</label>
+      <select id="inputState" class="form-control" name="selectedItem">
+        <option selected hidden> <%= initialValue %> </option>
+        <% for (currency in currencies) { %>
+          <option> <%= currencies[currency] %> </option>
+        <% } %>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="inputDate">Date Range</label>
+      <input class="form-control" type="text" id="inputDate" name="daterange" value="" autocomplete="off">
+    </div>
+    <button id="pressed" class="btn btn-primary" type="submit" name="button">Check</button>
+  </form>
+
+  <% if (resultShortName !== "") { %>
+      <h7>Change from <%= changeFromDate %>: <span class="boldTxt <%= elementAttribute %>"><%= currencyChange %></span></h7>
+      <table class="table table-striped tableWidth">
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Price of Euro: </th>
+          </tr>
+        </thead>
+        <% for (var i = 0; i < resultLength; i++) { %>
+          <tr>
+            <% if (resultLength == 1) { %>
+              <th scope="row"> <%= resultShortName.Dt %> </th>
+              <td> <%= resultShortName.CcyAmt[1].Amt + ' ' + resultShortName.CcyAmt[1].Ccy %> </td>
+            <% } else { %>
+              <th scope="row"> <%= resultShortName[i].Dt %> </th>
+              <td> <%= resultShortName[i].CcyAmt[1].Amt + ' ' + resultShortName[i].CcyAmt[1].Ccy %> </td>
+            <% } %>
+          </tr>
+        <% } %>
+  <% } %>
+
+</body>
+
+</html>
