@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 //Set initial values
-let elementAttribute, changeFromDate, resultLength;
+let elementAttribute, changeFromDate, resultLength, changeToDate;
 let resultShortName = "";
 let currencyChange = "";
 let initialValue = "";
@@ -82,10 +82,12 @@ app.post("/", function(req, res) {
           resultLength = 1;
           currencyChange = 0;
           changeFromDate = resultShortName.Dt;
+          changetoDate = changeFromDate;
         } else {
           resultLength = resultShortName.length;
           currencyChange = (resultShortName[0].CcyAmt[1].Amt - resultShortName[resultLength - 1].CcyAmt[1].Amt);
           changeFromDate = resultShortName[resultLength - 1].Dt;
+          changeToDate = resultShortName[0].Dt;          
         }
         if (currencyChange > 0) {
           currencyChange = "+" + currencyChange;
@@ -102,6 +104,7 @@ app.post("/", function(req, res) {
           currencyChange: currencyChange,
           resultLength: resultLength,
           changeFromDate: changeFromDate,
+          changeToDate: changeToDate,
           elementAttribute: elementAttribute,
           initialValue: initialValue
         });
